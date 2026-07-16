@@ -1,14 +1,16 @@
-const sampleTides = [
-    {
-        type: "High",
-        time: "15:42"
-    },
-    {
-        type: "Low",
-        time: "22:08"
-    }
-];
+// Temporary tide data until UKHO API is connected
 
 function getTodaysTides() {
-    return sampleTides;
+
+    return [
+        {
+            type: "High Water",
+            time: "15:42"
+        },
+        {
+            type: "Low Water",
+            time: "22:08"
+        }
+    ];
+
 }
