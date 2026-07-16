@@ -87,4 +87,40 @@ footer {
     margin-top: 24px;
     color: #666;
     font-size: 0.9rem;
+    /* Layout improvements */
+
+header {
+    background: #005b96;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: white;
+    margin-bottom: 8px;
+}
+
+header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+section {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#nextTide,
+#tides,
+#state {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
 }
