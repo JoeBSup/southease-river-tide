@@ -1,4 +1,7 @@
-/* Southease River Tide v3 */
+/* ==========================================================
+   Southease River Tide v3.0
+   Mobile-first stylesheet
+   ========================================================== */
 
 * {
     margin: 0;
@@ -6,121 +9,322 @@
     box-sizing: border-box;
 }
 
+:root {
+
+    --primary: #0b6fa4;
+    --primary-dark: #084f75;
+
+    --background: #eef7fb;
+
+    --card: #ffffff;
+
+    --text: #1f2937;
+
+    --muted: #6b7280;
+
+    --border: #d8e5ee;
+
+    --success: #1d9b50;
+
+    --warning: #e69500;
+
+    --danger: #c62828;
+
+    --shadow: 0 4px 14px rgba(0,0,0,0.08);
+
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(to bottom, #cfefff, #ffffff);
-    color: #222;
-    padding: 0px;
+
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: linear-gradient(
+        180deg,
+        #dff3ff 0%,
+        #eef7fb 100%
+    );
+
+    color: var(--text);
+
+    line-height: 1.5;
+
 }
 
 .container {
-    max-width: 600px;
+
+    max-width: 720px;
+
     margin: auto;
+
+    padding: 20px;
+
+}
+
+/* ===========================
+   Header
+   =========================== */
+
+header {
+
+    text-align: center;
+
+    margin-bottom: 24px;
+
 }
 
 h1 {
-    text-align: center;
-    color: #005b96;
-    margin-bottom: 20px;
+
+    color: var(--primary);
+
+    font-size: 2rem;
+
+    margin-bottom: 6px;
+
 }
 
-h2 {
-    color: #005b96;
-    margin-bottom: 10px;
+.subtitle {
+
+    color: var(--muted);
+
+    font-size: 1rem;
+
 }
+
+/* ===========================
+   Cards
+   =========================== */
 
 .card {
-    background: white;
-    border-radius: 12px;
-    padding: 16px;
+
+    background: var(--card);
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    box-shadow: var(--shadow);
+
+    border: 1px solid var(--border);
+
+}
+
+.card h2 {
+
+    color: var(--primary);
+
     margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    font-size: 1.2rem;
+
 }
 
-button {
+/* ===========================
+   River status
+   =========================== */
+
+.river-state {
+
+    text-align: center;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    color: var(--success);
+
+}
+
+/* Future classes */
+
+.state-flood {
+
+    color: var(--success);
+
+}
+
+.state-ebb {
+
+    color: var(--warning);
+
+}
+
+.state-slack {
+
+    color: var(--primary);
+
+}
+
+/* ===========================
+   Countdown
+   =========================== */
+
+.next-event {
+
+    text-align: center;
+
+    font-size: 1.2rem;
+
+    margin-bottom: 10px;
+
+}
+
+.countdown {
+
+    text-align: center;
+
+    font-size: 2.8rem;
+
+    font-weight: bold;
+
+    color: var(--primary);
+
+    letter-spacing: 1px;
+
+}
+
+/* ===========================
+   Tide tables
+   =========================== */
+
+.tide-table {
+
     width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    background: #0077cc;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.2s ease;
+
+    border-collapse: collapse;
+
 }
 
-button:hover {
-    background: #005fa3;
+.tide-table th {
+
+    text-align: left;
+
+    padding: 12px 0;
+
+    color: var(--primary);
+
+    font-weight: 600;
+
 }
 
-button:active {
-    transform: scale(0.98);
-}
+.tide-table td {
 
-input,
-select {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
+    text-align: right;
 
-.status-good {
-    color: #0a8a2a;
+    font-size: 1.25rem;
+
     font-weight: bold;
+
 }
 
-.status-warning {
-    color: #d48806;
-    font-weight: bold;
+.tide-table tr:not(:last-child) {
+
+    border-bottom: 1px solid var(--border);
+
 }
 
-.status-danger {
-    color: #c62828;
-    font-weight: bold;
+/* ===========================
+   About section
+   =========================== */
+
+.card p {
+
+    margin-bottom: 12px;
+
 }
+
+.card ul {
+
+    margin-left: 20px;
+
+    margin-bottom: 12px;
+
+}
+
+.card li {
+
+    margin-bottom: 8px;
+
+}
+
+/* ===========================
+   Footer
+   =========================== */
 
 footer {
+
     text-align: center;
-    margin-top: 24px;
-    color: #666;
+
+    margin: 30px 0 20px;
+
+    color: var(--muted);
+
     font-size: 0.9rem;
-    /* Layout improvements */
 
-header {
-    background: #005b96;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
 }
 
-header h1 {
-    color: white;
-    margin-bottom: 8px;
+/* ===========================
+   Mobile
+   =========================== */
+
+@media (max-width: 600px) {
+
+    .container {
+
+        padding: 14px;
+
+    }
+
+    h1 {
+
+        font-size: 1.8rem;
+
+    }
+
+    .river-state {
+
+        font-size: 1.7rem;
+
+    }
+
+    .countdown {
+
+        font-size: 2.3rem;
+
+    }
+
+    .card {
+
+        padding: 16px;
+
+    }
+
 }
 
-header p {
-    margin: 0;
-    opacity: 0.9;
-}
+/* ===========================
+   Desktop
+   =========================== */
 
-section {
-    background: white;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+@media (min-width: 900px) {
 
-#nextTide,
-#tides,
-#state {
-    margin-top: 10px;
-    font-size: 1.1rem;
-    line-height: 1.5;
-}
+    .container {
+
+        max-width: 800px;
+
+    }
+
+    h1 {
+
+        font-size: 2.4rem;
+
+    }
+
 }
