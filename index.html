@@ -1,64 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1">
+
 <title>Southease River Tide</title>
 
+<meta name="theme-color" content="#006994">
+
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<link rel="apple-touch-icon"
+href="icons/icon-192.png">
 
 </head>
 
-<script>
-
-if("serviceWorker" in navigator){
-
-navigator.serviceWorker.register(
-"service-worker.js"
-);
-
-}
-
-</script>
 
 <body>
 
-<div class="app">
+
+<header>
 
 <h1>🌊 Southease River Tide</h1>
 
-<div class="card">
+<p>River Ouse paddler guide</p>
 
-<h2>Enter Newhaven Tide</h2>
+</header>
+
+
+
+<section class="next">
+
+<h2>Next Tide</h2>
+
+<div id="nextTide">
+Loading...
+</div>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Today's Tides</h2>
+
+<div id="tides"></div>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>River State</h2>
+
+<div id="state">
+Loading...
+</div>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Manual Update</h2>
 
 <select id="type">
-<option value="high">High Water</option>
-<option value="low">Low Water</option>
+
+<option value="high">
+High Water
+</option>
+
+<option value="low">
+Low Water
+</option>
+
 </select>
 
-<input type="time" id="time">
 
-<button onclick="calculate()">
-Calculate
+<input id="newhaven"
+type="time">
+
+
+<button onclick="addTide()">
+Add Tide
 </button>
 
-</div>
+
+</section>
 
 
-<div class="card result">
 
-<h2>Southease</h2>
+<script src="js/tides.js"></script>
 
-<p id="output">
-Waiting...
-</p>
+<script src="js/countdown.js"></script>
 
-</div>
+<script src="js/app.js"></script>
 
-</div>
-
-
-<script src="app.js"></script>
 
 </body>
+
 </html>

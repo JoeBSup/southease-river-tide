@@ -1,56 +1,96 @@
 body {
 
-font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+sans-serif;
 
 background:
-linear-gradient(#bde4ff,#d9f5df);
+linear-gradient(#bde4ff,#dff3df);
 
 margin:0;
-
-}
-
-.app {
-
-padding:20px;
-
-}
-
-
-h1 {
-
-text-align:center;
 
 color:#003b5c;
 
 }
 
 
-.card {
+header {
 
-background:white;
+text-align:center;
 
-border-radius:20px;
-
-padding:20px;
-
-margin-top:20px;
-
-box-shadow:0 4px 12px rgba(0,0,0,.15);
+padding:25px;
 
 }
 
 
-select,input,button {
+h1 {
 
-width:100%;
+font-size:30px;
+
+}
+
+
+.card,
+.next {
+
+background:white;
+
+margin:15px;
+
+padding:20px;
+
+border-radius:25px;
+
+box-shadow:
+0 5px 15px #0002;
+
+}
+
+
+.next {
+
+text-align:center;
+
+}
+
+
+#nextTide {
+
+font-size:38px;
+
+font-weight:bold;
+
+color:#006994;
+
+}
+
+
+.tide {
+
+padding:15px;
+
+border-bottom:
+1px solid #ddd;
 
 font-size:20px;
+
+}
+
+
+input,
+select,
+button {
+
+width:100%;
 
 padding:15px;
 
 margin-top:10px;
 
-border-radius:12px;
+font-size:18px;
+
+border-radius:15px;
 
 }
 
@@ -66,19 +106,22 @@ border:none;
 }
 
 
-.result {
+@media(prefers-color-scheme:dark){
 
-text-align:center;
+body {
+
+background:#111827;
+
+color:white;
 
 }
 
 
-#output {
+.card,
+.next {
 
-font-size:32px;
+background:#1f2937;
 
-font-weight:bold;
-
-color:#006994;
+}
 
 }
