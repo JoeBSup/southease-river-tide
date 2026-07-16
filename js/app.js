@@ -2,7 +2,8 @@
 ==========================================================
 Southease River Tide v3.0
 app.js
-Main application controller
+
+Main application controller.
 ==========================================================
 */
 
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", initialise);
 
 function initialise() {
 
-    console.log("Southease River Tide v3.0");
+    console.log("Southease River Tide v3.0 starting...");
 
     const newhaven = TideService.getTodaysTides();
 
@@ -38,60 +39,48 @@ function displayRiver(river) {
 
 function displayTideTables(newhaven, river) {
 
-    // Southease table
-    const southeaseHTML = river.southeaseTides
-        .map(tide => {
+    // Southease tides
+    const southeaseHTML = river.southeaseTides.map(tide => {
 
-            const symbol =
-                tide.type === "High"
-                    ? "▲"
-                    : "▼";
+        const symbol = tide.type === "High" ? "▲" : "▼";
 
-            return `
-                <tr>
-                    <td>${symbol} ${tide.type}</td>
-                    <td>${tide.time}</td>
-                </tr>
-            `;
+        return `
+            <tr>
+                <td>${symbol} ${tide.type}</td>
+                <td>${tide.time}</td>
+            </tr>
+        `;
 
-        })
-        .join("");
+    }).join("");
 
-    document.getElementById("southeaseHigh")
-        .parentElement
-        .parentElement
-        .innerHTML = southeaseHTML;
+    document.getElementById("southeaseTable").innerHTML =
+        southeaseHTML;
 
 
-    // Newhaven table
-    const newhavenHTML = newhaven.tides
-        .map(tide => {
+    // Newhaven tides
+    const newhavenHTML = newhaven.tides.map(tide => {
 
-            const symbol =
-                tide.type === "High"
-                    ? "▲"
-                    : "▼";
+        const symbol = tide.type === "High" ? "▲" : "▼";
 
-            return `
-                <tr>
-                    <td>${symbol} ${tide.type}</td>
-                    <td>${tide.time}</td>
-                </tr>
-            `;
+        return `
+            <tr>
+                <td>${symbol} ${tide.type}</td>
+                <td>${tide.time}</td>
+            </tr>
+        `;
 
-        })
-        .join("");
+    }).join("");
 
-    document.getElementById("newhavenHigh")
-        .parentElement
-        .parentElement
-        .innerHTML = newhavenHTML;
+    document.getElementById("newhavenTable").innerHTML =
+        newhavenHTML;
 
 }
 
 function registerServiceWorker() {
 
     if (!("serviceWorker" in navigator)) {
+
+        console.log("Service workers are not supported.");
 
         return;
 
@@ -101,15 +90,12 @@ function registerServiceWorker() {
         .register("./service-worker.js")
         .then(() => {
 
-            console.log("Service Worker registered");
+            console.log("Service Worker registered successfully.");
 
         })
         .catch(error => {
 
-            console.error(error);
-
-            document.getElementById("southeaseTable").innerHTML = southeaseHTML;
-document.getElementById("newhavenTable").innerHTML = newhavenHTML;
+            console.error("Service Worker registration failed:", error);
 
         });
 
