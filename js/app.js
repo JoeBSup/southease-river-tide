@@ -1,14 +1,19 @@
 window.onload = function () {
 
-    console.log("Southease River Tide loaded");
+    const tides = getTodaysTides();
+    const river = getRiverState();
 
     document.getElementById("nextTide").innerHTML =
-        "<strong>High Water</strong><br>15:42";
+        "<strong>Next High Water</strong><br>" +
+        tides.highWater;
 
     document.getElementById("tides").innerHTML =
-        "▲ High Water 15:42<br><br>▼ Low Water 22:08";
+        "▲ High Water " + tides.highWater +
+        "<br><br>" +
+        "▼ Low Water " + tides.lowWater;
 
-    document.getElementById("state").textContent =
-        "Flood Tide";
+    document.getElementById("state").innerHTML =
+        "<strong>" + river.state + "</strong><br>" +
+        "Next change: " + river.nextChange;
 
 };
