@@ -1,4 +1,4 @@
-const CACHE="southease-tide-v2";
+const CACHE="southease-tide-v3";
 
 const files=[
 "index.html",
