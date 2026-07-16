@@ -1,9 +1,11 @@
-const CACHE="southease-tide-v3";
+const CACHE_NAME = "southease-river-v4";
 
-const files=[
-"index.html",
-"style.css",
-"app.js"
+const FILES_TO_CACHE = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./js/app.js",
+  "./js/countdown.js"
 ];
 
 
