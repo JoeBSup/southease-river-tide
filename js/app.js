@@ -108,6 +108,9 @@ function registerServiceWorker() {
 
             console.error(error);
 
+            document.getElementById("southeaseTable").innerHTML = southeaseHTML;
+document.getElementById("newhavenTable").innerHTML = newhavenHTML;
+
         });
 
 }
