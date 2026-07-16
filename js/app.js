@@ -2,8 +2,7 @@
 ==========================================================
 Southease River Tide v3.0
 app.js
-
-Main application controller.
+Main application controller
 ==========================================================
 */
 
@@ -19,7 +18,7 @@ function initialise() {
 
     displayRiver(river);
 
-    displayNewhaven(newhaven);
+    displayTideTables(newhaven, river);
 
     Countdown.setTarget(river.nextTime);
 
@@ -33,34 +32,69 @@ function displayRiver(river) {
         river.riverState;
 
     document.getElementById("nextEvent").textContent =
-        `${river.nextEvent} Water - ${river.nextTime}`;
-
-    document.getElementById("southeaseHigh").textContent =
-        river.southeaseHigh;
-
-    document.getElementById("southeaseLow").textContent =
-        river.southeaseLow;
+        `Next ${river.nextEvent} Water - ${river.nextTime}`;
 
 }
 
-function displayNewhaven(data) {
+function displayTideTables(newhaven, river) {
 
-    const highs = data.tides.filter(t => t.type === "High");
+    // Southease table
+    const southeaseHTML = river.southeaseTides
+        .map(tide => {
 
-    const lows = data.tides.filter(t => t.type === "Low");
+            const symbol =
+                tide.type === "High"
+                    ? "▲"
+                    : "▼";
 
-    document.getElementById("newhavenHigh").textContent =
-        highs[0].time;
+            return `
+                <tr>
+                    <td>${symbol} ${tide.type}</td>
+                    <td>${tide.time}</td>
+                </tr>
+            `;
 
-    document.getElementById("newhavenLow").textContent =
-        lows[0].time;
+        })
+        .join("");
+
+    document.getElementById("southeaseHigh")
+        .parentElement
+        .parentElement
+        .innerHTML = southeaseHTML;
+
+
+    // Newhaven table
+    const newhavenHTML = newhaven.tides
+        .map(tide => {
+
+            const symbol =
+                tide.type === "High"
+                    ? "▲"
+                    : "▼";
+
+            return `
+                <tr>
+                    <td>${symbol} ${tide.type}</td>
+                    <td>${tide.time}</td>
+                </tr>
+            `;
+
+        })
+        .join("");
+
+    document.getElementById("newhavenHigh")
+        .parentElement
+        .parentElement
+        .innerHTML = newhavenHTML;
 
 }
 
 function registerServiceWorker() {
 
     if (!("serviceWorker" in navigator)) {
+
         return;
+
     }
 
     navigator.serviceWorker
@@ -72,7 +106,7 @@ function registerServiceWorker() {
         })
         .catch(error => {
 
-            console.error("Service Worker failed", error);
+            console.error(error);
 
         });
 
