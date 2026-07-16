@@ -2,31 +2,25 @@
 ==========================================================
 Southease River Tide v3.0
 riverCalculator.js
-
-Converts Newhaven tide predictions into Southease tide
-predictions and determines the current river state.
 ==========================================================
 */
 
 const RiverCalculator = {
 
-    HIGH_OFFSET: 3, // hours
-    LOW_OFFSET: 1,  // hours
+    HIGH_OFFSET: 3,
+    LOW_OFFSET: 1,
 
     addHours(timeString, hours) {
 
-        const parts = timeString.split(":");
+        const [h, m] = timeString.split(":").map(Number);
 
         const date = new Date();
 
-        date.setHours(parseInt(parts[0], 10));
-        date.setMinutes(parseInt(parts[1], 10));
-        date.setSeconds(0);
-        date.setMilliseconds(0);
+        date.setHours(h, m, 0, 0);
 
         date.setHours(date.getHours() + hours);
 
-        return this.formatTime(date);
+        return date;
 
     },
 
@@ -40,106 +34,85 @@ const RiverCalculator = {
 
     },
 
-    timeToDate(timeString) {
-
-        const parts = timeString.split(":");
-
-        const date = new Date();
-
-        date.setHours(parseInt(parts[0], 10));
-        date.setMinutes(parseInt(parts[1], 10));
-        date.setSeconds(0);
-        date.setMilliseconds(0);
-
-        return date;
-
-    },
-
     calculateSoutheaseTides(newhavenData) {
 
-        const southease = [];
-
-        newhavenData.tides.forEach(tide => {
+        return newhavenData.tides.map(tide => {
 
             const offset =
                 tide.type === "High"
                     ? this.HIGH_OFFSET
                     : this.LOW_OFFSET;
 
-            southease.push({
+            const date = this.addHours(tide.time, offset);
+
+            return {
 
                 type: tide.type,
+                date: date,
+                time: this.formatTime(date)
 
-                originalTime: tide.time,
-
-                time: this.addHours(tide.time, offset)
-
-            });
+            };
 
         });
 
-        return southease;
-
     },
 
-    getCurrentState(southeaseTides) {
+    getNextEvent(tides) {
 
         const now = new Date();
 
-        let previous = null;
-        let next = null;
+        for (const tide of tides) {
 
-        for (const tide of southeaseTides) {
-
-            const tideTime = this.timeToDate(tide.time);
-
-            if (tideTime <= now) {
-
-                previous = tide;
-
-            }
-
-            if (tideTime > now) {
-
-                next = tide;
-                break;
-
+            if (tide.date > now) {
+                return tide;
             }
 
         }
 
-        // Before first tide today
-        if (!previous) {
+        const tomorrow = new Date(tides[0].date);
+        tomorrow.setDate(tomorrow.getDate() + 1);
 
-            previous = southeaseTides[southeaseTides.length - 1];
+        return {
+            type: tides[0].type,
+            date: tomorrow,
+            time: this.formatTime(tomorrow)
+        };
+
+    },
+
+    getNextByType(tides, type) {
+
+        const now = new Date();
+
+        for (const tide of tides) {
+
+            if (tide.type === type && tide.date > now) {
+                return tide;
+            }
 
         }
 
-        // After last tide today
-        if (!next) {
+        // First matching tide tomorrow
+        const first = tides.find(t => t.type === type);
 
-            next = southeaseTides[0];
-
-        }
+        const tomorrow = new Date(first.date);
+        tomorrow.setDate(tomorrow.getDate() + 1);
 
         return {
 
-            currentState:
-                previous.type === "Low"
-                    ? "🌊 Flood Tide"
-                    : "🌊 Ebb Tide",
-
-            nextEvent:
-                next.type + " Water",
-
-            nextTime:
-                next.time,
-
-            previous,
-
-            next
+            type: first.type,
+            date: tomorrow,
+            time: this.formatTime(tomorrow)
 
         };
+
+    },
+
+    getRiverState(nextEvent) {
+
+        return nextEvent.type === "High"
+            ? "🌊 Flood Tide"
+            : "🌊 Ebb Tide";
 
     },
 
@@ -148,14 +121,30 @@ const RiverCalculator = {
         const southeaseTides =
             this.calculateSoutheaseTides(newhavenData);
 
-        const state =
-            this.getCurrentState(southeaseTides);
+        const nextEvent =
+            this.getNextEvent(southeaseTides);
+
+        const nextHigh =
+            this.getNextByType(southeaseTides, "High");
+
+        const nextLow =
+            this.getNextByType(southeaseTides, "Low");
 
         return {
 
             southeaseTides,
 
-            state
+            southeaseHigh: nextHigh.time,
+
+            southeaseLow: nextLow.time,
+
+            nextEvent: nextEvent.type,
+
+            nextTime: nextEvent.time,
+
+            nextDate: nextEvent.date,
+
+            riverState: this.getRiverState(nextEvent)
 
         };
 
