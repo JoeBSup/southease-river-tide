@@ -1,85 +1,88 @@
-function updateNextTide(){
+/*
+==========================================================
+Southease River Tide v3.0
+countdown.js
 
-    const next =
-    document.getElementById("nextTide");
+Displays a live countdown to the next tide event.
+==========================================================
+*/
 
+const Countdown = {
 
-    let now = new Date();
+    timer: null,
 
+    targetTime: null,
 
-    let upcoming = [];
+    setTarget(timeString) {
 
+        const parts = timeString.split(":");
 
-    newhavenTides.forEach(t => {
+        const target = new Date();
 
+        target.setHours(parseInt(parts[0], 10));
+        target.setMinutes(parseInt(parts[1], 10));
+        target.setSeconds(0);
+        target.setMilliseconds(0);
 
-        let d = new Date();
-
-        let parts =
-        t.time.split(":");
-
-
-        d.setHours(
-            parts[0],
-            parts[1],
-            0
-        );
-
-
-        if(d > now){
-
-            upcoming.push({
-                name:t.type,
-                time:d
-            });
-
+        // If today's time has already passed,
+        // assume the event is tomorrow.
+        if (target < new Date()) {
+            target.setDate(target.getDate() + 1);
         }
 
-    });
+        this.targetTime = target;
 
+        this.start();
 
-    if(upcoming.length===0){
+    },
 
-        next.innerHTML =
-        "Tomorrow's tides";
+    start() {
 
-        return;
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
+
+        this.update();
+
+        this.timer = setInterval(() => {
+            this.update();
+        }, 1000);
+
+    },
+
+    update() {
+
+        if (!this.targetTime) {
+            return;
+        }
+
+        const now = new Date();
+
+        let diff = Math.floor((this.targetTime - now) / 1000);
+
+        if (diff <= 0) {
+
+            document.getElementById("countdown").textContent =
+                "Updating...";
+
+            clearInterval(this.timer);
+
+            return;
+        }
+
+        const hours = Math.floor(diff / 3600);
+
+        diff %= 3600;
+
+        const minutes = Math.floor(diff / 60);
+
+        const seconds = diff % 60;
+
+        document.getElementById("countdown").textContent =
+            String(hours).padStart(2, "0") + ":" +
+            String(minutes).padStart(2, "0") + ":" +
+            String(seconds).padStart(2, "0");
 
     }
 
-
-    upcoming.sort(
-        (a,b)=>a.time-b.time
-    );
-
-
-    let tide =
-    upcoming[0];
-
-
-    let minutes =
-    Math.floor(
-        (tide.time-now)/60000
-    );
-
-
-    next.innerHTML = `
-
-    ${tide.name}
-
-    <br>
-
-    ${tide.time.toLocaleTimeString([],{
-        hour:"2-digit",
-        minute:"2-digit"
-    })}
-
-    <br>
-
-    <small>
-    in ${minutes} minutes
-    </small>
-
-    `;
-
-}
+};
