@@ -1,112 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Southease River Tide</title>
+    <title>Southease River Tide</title>
 
-<meta name="theme-color" content="#006994">
+    <meta name="description" content="River Ouse paddling guide using Newhaven tide predictions">
 
-<link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b6fa4">
 
-<link rel="stylesheet"
-href="css/style.css">
+    <link rel="manifest" href="manifest.json">
 
-<link rel="apple-touch-icon"
-href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
-
 <body>
 
+<div class="container">
 
 <header>
 
-<h1>🌊 Southease River Tide</h1>
+    <h1>🌊 Southease River Tide</h1>
 
-<p>River Ouse Paddler Guide</p>
+    <p class="subtitle">
+        River Ouse • East Sussex
+    </p>
 
 </header>
 
 
+<main>
 
-<section class="next">
+<section class="card status-card">
 
-<h2>Next Tide</h2>
+    <h2>Current River State</h2>
 
-<div id="nextTide">
-Loading...
+    <div id="riverState" class="river-state">
+
+        Loading...
+
+    </div>
+
+</section>
+
+
+<section class="card countdown-card">
+
+    <h2>Next Tide Event</h2>
+
+    <div id="nextEvent" class="next-event">
+
+        Loading...
+
+    </div>
+
+    <div id="countdown" class="countdown">
+
+        --:--
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+    <h2>Southease Tide Times</h2>
+
+    <table class="tide-table">
+
+        <tr>
+
+            <th>High Water</th>
+
+            <td id="southeaseHigh">
+
+                --
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <th>Low Water</th>
+
+            <td id="southeaseLow">
+
+                --
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+
+<section class="card">
+
+    <h2>Reference (Newhaven)</h2>
+
+    <table class="tide-table">
+
+        <tr>
+
+            <th>High Water</th>
+
+            <td id="newhavenHigh">
+
+                --
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <th>Low Water</th>
+
+            <td id="newhavenLow">
+
+                --
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+
+<section class="card">
+
+    <h2>About</h2>
+
+    <p>
+
+        Southease tide times are calculated from Newhaven tide
+        predictions using locally derived offsets.
+
+    </p>
+
+    <ul>
+
+        <li>High Water = Newhaven + 3 hours</li>
+
+        <li>Low Water = Newhaven + 1 hour</li>
+
+    </ul>
+
+    <p>
+
+        Always use local observations and your own judgement before
+        paddling.
+
+    </p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    Version 3.0 Foundation
+
+</footer>
+
 </div>
-
-</section>
-
-
-
-<section class="card">
-
-<h2>Today's Tides</h2>
-
-<div id="tides"></div>
-
-</section>
-
-
-
-<section class="card">
-
-<h2>River State</h2>
-
-<div id="state">
-Loading...
-</div>
-
-</section>
-
-
-
-<section class="card">
-
-<h2>Manual Update</h2>
-
-<select id="type">
-
-<option value="high">
-High Water
-</option>
-
-<option value="low">
-Low Water
-</option>
-
-</select>
-
-
-<input id="newhaven"
-type="time">
-
-
-<button disabled>
-    Live data coming soon
-</button>
-
-
-</section>
-
-
-
 
 
 <script src="js/tideService.js"></script>
-<script src="js/riverCalculator.js"></script>
-<script src="js/countdown.js"></script>
-<script src="js/app.js"></script>
 
+<script src="js/riverCalculator.js"></script>
+
+<script src="js/countdown.js"></script>
+
+<script src="js/app.js"></script>
 
 </body>
 
