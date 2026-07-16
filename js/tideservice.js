@@ -1,16 +1,52 @@
-// Temporary tide data until UKHO API is connected
+/*
+==========================================================
+Southease River Tide v3.0
+tideService.js
 
-function getTodaysTides() {
+Provides Newhaven tide data.
 
-    return [
-        {
-            type: "High Water",
-            time: "15:42"
-        },
-        {
-            type: "Low Water",
-            time: "22:08"
-        }
-    ];
+Currently uses sample data.
 
-}
+Later this file will fetch live data from the UKHO API.
+==========================================================
+*/
+
+const TideService = {
+
+    getTodaysTides() {
+
+        return {
+
+            location: "Newhaven",
+
+            date: new Date(),
+
+            tides: [
+
+                {
+                    type: "High",
+                    time: "03:18"
+                },
+
+                {
+                    type: "Low",
+                    time: "09:41"
+                },
+
+                {
+                    type: "High",
+                    time: "15:42"
+                },
+
+                {
+                    type: "Low",
+                    time: "22:08"
+                }
+
+            ]
+
+        };
+
+    }
+
+};
