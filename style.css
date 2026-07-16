@@ -1,0 +1,84 @@
+body {
+
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
+background:
+linear-gradient(#bde4ff,#d9f5df);
+
+margin:0;
+
+}
+
+.app {
+
+padding:20px;
+
+}
+
+
+h1 {
+
+text-align:center;
+
+color:#003b5c;
+
+}
+
+
+.card {
+
+background:white;
+
+border-radius:20px;
+
+padding:20px;
+
+margin-top:20px;
+
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+
+select,input,button {
+
+width:100%;
+
+font-size:20px;
+
+padding:15px;
+
+margin-top:10px;
+
+border-radius:12px;
+
+}
+
+
+button {
+
+background:#006994;
+
+color:white;
+
+border:none;
+
+}
+
+
+.result {
+
+text-align:center;
+
+}
+
+
+#output {
+
+font-size:32px;
+
+font-weight:bold;
+
+color:#006994;
+
+}

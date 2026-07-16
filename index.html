@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Southease River Tide</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<script>
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register(
+"service-worker.js"
+);
+
+}
+
+</script>
+
+<body>
+
+<div class="app">
+
+<h1>🌊 Southease River Tide</h1>
+
+<div class="card">
+
+<h2>Enter Newhaven Tide</h2>
+
+<select id="type">
+<option value="high">High Water</option>
+<option value="low">Low Water</option>
+</select>
+
+<input type="time" id="time">
+
+<button onclick="calculate()">
+Calculate
+</button>
+
+</div>
+
+
+<div class="card result">
+
+<h2>Southease</h2>
+
+<p id="output">
+Waiting...
+</p>
+
+</div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
